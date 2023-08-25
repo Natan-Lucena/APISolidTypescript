@@ -1,6 +1,6 @@
 import { Router } from "express";
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { v4 as uuidv4 } from "uuid";
+
+import { Category } from "../model/Category";
 
 const categoriesRoutes = Router();
 
@@ -8,14 +8,16 @@ const categories = [];
 
 categoriesRoutes.post("/", (req, res) => {
     const { name, description } = req.body;
-    const category = {
+    const category = new Category();
+    Object.assign(category, {
         name,
         description,
-        id: uuidv4(),
-    };
+        create_at: new Date(),
+    });
+
     console.log(category);
     categories.push(category);
-    return res.status(201).send();
+    return res.status(201).send({ category });
 });
 
 export { categoriesRoutes };
