@@ -7,5 +7,43 @@
         "contact" : {
             "email" : "natanlucena@alu.ufc.br"
         }
+    },
+    "paths":{
+        "/categories":{
+            "post":{
+                "tags":["Category"],
+                "summary": "Create a category",
+                "description":"Creating a new category",
+                "requestBody":{
+                    "required": true,
+                    "content":{
+                        "application/Json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "name":{
+                                        "type":"String"
+                                    },
+                                    "description":{
+                                        "type":"String"
+                                }
+                            },
+                            "example":{
+                                "name":"Category Name Samples",
+                                "description": "Category Description Sample"
+                            }
+                        }
+                    }
+                }
+            },
+            "responses":{
+                "201":{
+                    "description":"Created"
+                },
+                "500":{
+                    "description":"Category Already Exists"
+                }
+            }
+        }
     }
-}
+}}
