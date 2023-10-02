@@ -44,6 +44,35 @@
                     "description":"Category Already Exists"
                 }
             }
+        },
+        "get":{
+            "tags":["Category"],
+            "summary":"List all categories",
+            "description":"List all categories",
+            "responses":{
+                "200":{
+                    "description":"sucess",
+                    "content":{
+                        "application/Json":{
+                            "schema":{
+                                "type":"array",
+                                "items":{
+                                    "type":"object",
+                                    "properties":{
+                                        "name":{
+                                            "type":"String"
+                                        },
+                                        "description":{
+                                            "type":"String"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
         }
     }
 }}
