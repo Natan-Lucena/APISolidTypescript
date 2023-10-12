@@ -1,4 +1,8 @@
 {
     "type":"postgres",
-    "url": "postgres://oalvcxqy:gt_N6nnX231Cxou0NVG6JoQSmqZD1eaE@drona.db.elephantsql.com/oalvcxqy"
+    "url": "postgres://oalvcxqy:gt_N6nnX231Cxou0NVG6JoQSmqZD1eaE@drona.db.elephantsql.com/oalvcxqy",
+    "migrations":["./src/database/migrations/*.ts"],
+    "cli": {
+        "migrationsDir":"./src/database/migrations"
+    }
 }
