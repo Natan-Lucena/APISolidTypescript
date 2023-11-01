@@ -13,13 +13,6 @@ class CategoryRepository implements ICategoryRepository {
         this.repository = getRepository(Category);
     }
 
-    // public static getInstance(): CategoryRepository {
-    //    if (!CategoryRepository.INSTANCE) {
-    //        CategoryRepository.INSTANCE = new CategoryRepository();
-    //    }
-    //    return CategoryRepository.INSTANCE;
-    // }
-
     async create({ name, description }: ICreateCategoryDTO): Promise<void> {
         const category = this.repository.create({ description, name });
         console.log(category);

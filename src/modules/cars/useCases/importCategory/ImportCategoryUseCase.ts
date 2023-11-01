@@ -4,7 +4,7 @@ import fs from "fs";
 import { inject, injectable } from "tsyringe";
 
 import { ICategoryRepository } from "../../repositories/ICategoriesRepository";
-import { CategoryRepository } from "../../repositories/implementantions/CategoryRepository";
+import { CategoryRepository } from "../../repositories/implementations/CategoryRepository";
 
 interface IImportCategory {
     name: string;
