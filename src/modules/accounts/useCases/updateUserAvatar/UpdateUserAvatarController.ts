@@ -7,11 +7,10 @@ class UpdateUserAvatarController {
     async handle(req: Request, res: Response): Promise<Response> {
         const { id } = req.user;
 
+        const avatarFile = req.file.filename;
         const updateUserAvatarUseCase = container.resolve(
             UpdateUserAvatarUseCase,
         );
-
-        const avatarFile = null;
 
         await updateUserAvatarUseCase.execute({ userID: id, avatarFile });
 
