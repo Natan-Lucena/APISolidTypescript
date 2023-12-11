@@ -2,8 +2,8 @@
     "type":"postgres",
     "url": "postgres://oalvcxqy:gt_N6nnX231Cxou0NVG6JoQSmqZD1eaE@drona.db.elephantsql.com/oalvcxqy",
     "entities": ["./src/modules/**/entities/*.ts"],
-    "migrations":["./src/database/migrations/*.ts"],
+    "migrations":["./src/shared/infra/typeorm/migrations*.ts"],
     "cli": {
-        "migrationsDir":"./src/database/migrations"
+        "migrationsDir":"./src/shared/infra/typeorm/migrations"
     }
 }

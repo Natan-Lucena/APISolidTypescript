@@ -5,12 +5,12 @@ import "express-async-errors";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import swaggerUi from "swagger-ui-express";
 
-import "./database";
+import "../typeorm";
 
-import "./shared/container";
-import { AppError } from "./errors/AppError";
+import "../../container";
+import swaggerFile from "../../../swagger.json";
+import { AppError } from "../../errors/AppError";
 import { router } from "./routes";
-import swaggerFile from "./swagger.json";
 
 const app = express();
 
