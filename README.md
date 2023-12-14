@@ -2,7 +2,6 @@
 
 **RF**
 Deve ser possivel cadastrar um novo carro.
-Deve ser possivel listar todas as categorias.
 
 
 **RN**
