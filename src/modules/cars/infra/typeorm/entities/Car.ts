@@ -1,4 +1,5 @@
 import { Entity } from "typeorm";
+import { v4 as uuid } from "uuid";
 
 @Entity("cars")
 class Car {
@@ -12,5 +13,13 @@ class Car {
     brand: string;
     categoryId: string;
     created_at: Date;
+
+    constructor() {
+        if (!this.id) {
+            this.id = uuid();
+            this.available = true;
+            this.created_at = new Date();
+        }
+    }
 }
 export { Car };
