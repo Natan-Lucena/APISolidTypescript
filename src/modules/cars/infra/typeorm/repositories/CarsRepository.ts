@@ -46,13 +46,13 @@ class CarsRepository implements ICarsRepository {
             .createQueryBuilder("c")
             .where("available = :available", { available: true });
         if (brand) {
-            carsQuery.andWhere("c.brand = :brand", { brand });
+            carsQuery.andWhere("brand = :brand", { brand });
         }
         if (categoryId) {
-            carsQuery.andWhere("c.categoryId = :categoryId", { categoryId });
+            carsQuery.andWhere("categoryId = :categoryId", { categoryId });
         }
         if (name) {
-            carsQuery.andWhere("c.name = :name", { name });
+            carsQuery.andWhere("name = :name", { name });
         }
         const cars = carsQuery.getMany();
         return cars;
