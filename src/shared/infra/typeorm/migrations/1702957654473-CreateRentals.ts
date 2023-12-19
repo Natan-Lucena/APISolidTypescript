@@ -41,6 +41,11 @@ export class CreateRentals1702957654473 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()",
                     },
+                    {
+                        name: "updated_at",
+                        type: "timestamp",
+                        default: "now()",
+                    },
                 ],
                 foreignKeys: [
                     {
