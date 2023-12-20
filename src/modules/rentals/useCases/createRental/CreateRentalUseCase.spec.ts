@@ -1,18 +1,25 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import dayjs from "dayjs";
 
+import { IDateProvider } from "../../../../shared/container/providers/dateProvider/IDateProvider";
+import { DayJsDateProvider } from "../../../../shared/container/providers/dateProvider/implementations/DayJsDateProvider";
 import { AppError } from "../../../../shared/errors/AppError";
 import { RentalsRepositoryInMemory } from "../../repositories/in-memory/RentalsRepositoryInMemory";
 import { CreateRentalUseCase } from "./CreateRentalUseCase";
 
 let createRentalUseCase: CreateRentalUseCase;
 let rentalRepositoryInMemory: RentalsRepositoryInMemory;
+let dateProvider: IDateProvider;
 
 describe("Create a Rental", () => {
     const dayAdd24Hours = dayjs().add(1, "day").toDate();
     beforeEach(() => {
         rentalRepositoryInMemory = new RentalsRepositoryInMemory();
-        createRentalUseCase = new CreateRentalUseCase(rentalRepositoryInMemory);
+        dateProvider = new DayJsDateProvider();
+        createRentalUseCase = new CreateRentalUseCase(
+            rentalRepositoryInMemory,
+            dateProvider,
+        );
     });
 
     it("Should be able to create a new rental", async () => {
