@@ -1,14 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import dayjs from "dayjs";
-// eslint-disable-next-line import/no-extraneous-dependencies
-import utc from "dayjs/plugin/utc";
 import { injectable } from "tsyringe";
 
+import { IDateProvider } from "../../../../shared/container/providers/dateProvider/IDateProvider";
 import { AppError } from "../../../../shared/errors/AppError";
 import { Rental } from "../../infra/typeorm/entities/Rental";
 import { IRentalsRepository } from "../../repositories/IRentalsRepository";
 
-dayjs.extend(utc);
 interface IRequest {
     userId: string;
     carId: string;
@@ -17,7 +13,10 @@ interface IRequest {
 
 // @injectable()
 class CreateRentalUseCase {
-    constructor(private rentalsRepository: IRentalsRepository) {}
+    constructor(
+        private rentalsRepository: IRentalsRepository,
+        private dateProvider: IDateProvider,
+    ) {}
 
     async execute({
         userId,
@@ -34,16 +33,15 @@ class CreateRentalUseCase {
         if (rentalOpenToUser) {
             throw new AppError("User already have a open rental");
         }
+
         const minimumHours = 24;
+        const dateNow = this.dateProvider.dateNow();
 
-        const expectedReturnDateFormat = dayjs(expectedReturnDate)
-            .utc()
-            .local()
-            .format();
+        const compare = this.dateProvider.compareInHours(
+            dateNow,
+            expectedReturnDate,
+        );
 
-        const dateNow = dayjs().utc().local().format();
-
-        const compare = dayjs(expectedReturnDateFormat).diff(dateNow, "hours");
         if (compare < minimumHours) {
             throw new AppError("Invalid return date");
         }
