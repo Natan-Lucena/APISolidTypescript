@@ -1,4 +1,4 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
 import { IDateProvider } from "../../../../shared/container/providers/dateProvider/IDateProvider";
 import { AppError } from "../../../../shared/errors/AppError";
@@ -11,10 +11,12 @@ interface IRequest {
     expectedReturnDate: Date;
 }
 
-// @injectable()
+@injectable()
 class CreateRentalUseCase {
     constructor(
+        @inject("RentalsRepository")
         private rentalsRepository: IRentalsRepository,
+        @inject("DateProvider")
         private dateProvider: IDateProvider,
     ) {}
 
